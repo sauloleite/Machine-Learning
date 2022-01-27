@@ -1,0 +1,79 @@
+
+# coding: utf-8
+
+# <img src='dados.png'>
+
+# <img src='var-retas.png'>
+
+# <img src='margem.png'>
+
+# In[1]:
+
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+
+
+# In[2]:
+
+X,y = load_breast_cancer(return_X_y=True)
+X_train, X_test, y_train, y_test = train_test_split(X,y)
+
+
+# In[3]:
+
+svm = SVC(kernel='linear',C=1.0)
+
+
+# In[4]:
+
+svm.fit(X_train,y_train)
+
+
+# In[5]:
+
+svm.score(X_test,y_test)
+
+
+# <img src='insep.png'>
+
+# <img src='sep.png'>
+
+# In[6]:
+
+from sklearn.datasets import load_iris
+from sklearn.svm import SVC
+from sklearn.model_selection import train_test_split
+
+
+# In[13]:
+
+X,y = load_iris(return_X_y=True)
+X_train,X_test,y_train,y_test = train_test_split(X,y)
+
+
+# In[14]:
+
+svm = SVC(kernel='linear')
+svm.fit(X_train,y_train)
+svm.score(X_test,y_test)
+
+
+# In[16]:
+
+svm_kernel = SVC(kernel='poly',degree=3)
+svm_kernel.fit(X_train,y_train)
+svm_kernel.score(X_test,y_test)
+
+
+# In[17]:
+
+svm_rbf = SVC(kernel='rbf')
+svm_rbf.fit(X_train,y_train)
+svm_rbf.score(X_test,y_test)
+
+
+# In[ ]:
+
+
+

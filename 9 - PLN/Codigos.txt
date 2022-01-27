@@ -1,0 +1,57 @@
+Parte 1
+
+! pip install nltk
+
+import nltk
+
+nltk.download('stopwords')
+
+stopwords = nltk.corpus.stopwords.words('portuguese')
+
+print(stopwords)
+
+from nltk.tokenize import word_tokenize
+nltk.download('punkt')
+
+frase = 'Eu dirijo devagar porque nós queremos ver os animais.'
+
+tokens = word_tokenize(frase)
+
+print(tokens)
+
+for t in tokens:
+    if t not in stopwords:
+        print(t)
+
+Parte 2
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+import pandas as pd
+
+texto1 = 'A matemática é muito importante para compreendermos como a natureza funciona'
+
+tf_idf = TfidfVectorizer()
+
+vetor = tf_idf.fit_transform([texto1])
+print(vetor)
+
+vetor = vetor.todense()
+print(vetor)
+
+
+nomes = tf_idf.get_feature_names()
+
+df = pd.DataFrame(vetor, columns=nomes)
+print(df)
+
+texto2 = 'A matemática é incrível, quanto mais estudo matemática, mais eu consigo aprender matemática'
+
+tf_idf = TfidfVectorizer()
+vetor2 = tf_idf.fit_transform([texto2])
+
+vetor2 = vetor2.todense()
+
+nomes = tf_idf.get_feature_names()
+
+df = pd.DataFrame(vetor2, columns=nomes)
+print(df)
